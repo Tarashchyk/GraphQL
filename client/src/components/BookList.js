@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import { getBooksQuery } from "../queries/queries";
+import Spinner from "./Spinner";
+
 import BookDetails from "./BookDetails";
 
 class BookList extends Component {
@@ -17,7 +19,7 @@ class BookList extends Component {
   displayBooks = () => {
     const data = this.props.data;
     return data.loading ? (
-      <div>loading books...</div>
+      <Spinner />
     ) : (
       data.books.map(book => (
         <li key={book.id} onClick={e => this.bookSelected(book.id)}>

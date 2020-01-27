@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import { getBookQuery } from "../queries/queries";
+import Spinner from "./Spinner";
 
 class BookDetails extends Component {
   displayBookDetails = () => {
-    const { book } = this.props.data;
-    if (book) {
+    const { book, loading } = this.props.data;
+    if (loading) {
+      return <Spinner />;
+    } else if (book) {
       return (
         <div>
           <h2>{book.name}</h2>

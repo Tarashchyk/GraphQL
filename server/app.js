@@ -14,7 +14,9 @@ mongoose.connect(
   "mongodb+srv://admin:789054k12@graphql-test-eylcu.mongodb.net/test?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
-
+mongoose.connection.once("open", () => {
+  console.log("connected to database");
+});
 app.use(
   "/graphql",
   graphqlHTTP({

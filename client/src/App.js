@@ -3,6 +3,7 @@ import "./App.css";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+
 //COMPONENTS
 // import BookList from "./components/BookList";
 import AddBook from "./components/AddBook";
@@ -13,6 +14,17 @@ const BookList = React.lazy(() => import("./components/BookList"));
 const client = new ApolloClient({
   uri: "http://localhost:3000/graphql"
 });
+// ОТКЛЮЧАЕМ КЕШИРОВАНИЕ
+client.defaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore"
+  },
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all"
+  }
+};
 
 class App extends Component {
   render() {

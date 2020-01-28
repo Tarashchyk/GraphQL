@@ -1,9 +1,11 @@
 {
   "name": "graphql",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
+    "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/register": "^7.8.3",
     "cors": "^2.8.5",
@@ -11,5 +13,13 @@
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
     "mongoose": "^5.8.9"
-  }
+  },
+  "scripts": {
+    "start": "node dist/dev",
+    "dev": "nodemon app",
+    "build": "yarn clean && mkdir dist && babel src -d dist",
+    "prod": "yarn build && node bin/prod",
+    "clean": "rm -rf dist"
+  },
+  "license": "ISC"
 }
